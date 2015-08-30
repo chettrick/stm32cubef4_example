@@ -1,0 +1,83 @@
+STM32CubeF4 Example Project
+===========================
+
+This project showcases a simple example of the new ST Cube HAL API
+that will soon replace the ST Standard Peripheral Library.
+
+The most attractive feature of the Cube HAL API is that all source code
+is three-clause BSD licensed, with no extra restrictions.
+This is in stark contrast to the Standard Peripheral Library's
+``MCD-ST Liberty SW License Agreement V2'' which has numerous restrictions.
+
+The aim of the project is an STM32F407VG chip toggling GPIO pins.
+LEDs 3 to 6 will toggle on and off each time the ``User'' button is pushed.
+
+
+The dependencies for the project are:
+
+- make.  Should work with both BSD make and GNU make.
+
+- arm-none-eabi GCC toolchain.  Linaro version is available in
+  OpenBSD ports under devel/arm-none-eabi.  Clang has not yet been tested.
+
+- stlink firmware flashing tool from github.com/texane/stlink .
+  There is an experimental OpenBSD port at github.com/chettrick/mystuff .
+  It is under devel/stlink.  If you have the Ports Collection already, do:
+    $ cd /usr/ports
+    $ sudo git clone https://github.com/chettrick/mystuff.git
+    $ cd /usr/ports/mystuff/devel/stlink
+    $ sudo make
+    $ sudo make install
+
+- The STM32F4-Discovery board from ST Microelectronics.
+  It can be found at Digikey, Mouser, etc. at a very low cost.
+
+- This project's code (of course).  Note that the Cube HAL API code
+  is included in this project in the ``Drivers'' directory.
+  The full Cube HAL API code with all Board Support Packages is
+  at github.com/chettrick/stm32cubef4
+
+
+To build the project:
+    $ mkdir ~/work
+    $ cd ~/work
+    $ git clone https://github.com/chettrick/stm32cubef4_example.git
+    $ cd ~/work/stm32cubef4_example
+    $ make
+
+
+To flash the binary file to the STM32F4-Discovery board:
+    Plug a mini-USB cable from the board to a USB port on your computer.
+    (No other setup needed, for OpenBSD at least. Have not tested Linux.)
+
+    $ cd ~/work/stm32cubef4_example
+    $ make flash
+
+    Push the blue ``User'' button on the board to toggle the LEDs.
+
+
+The most useful parts of this example project are the Makefiles and
+the linker script.  All actual code is verbatim from ST.
+The Makefile in the project's root directory first calls out to the
+Makefile in the ``Drivers/STM32F4xx_HAL_Driver'' directory to build the
+Cube HAL library (named libstm32cubef4.a) and then builds the project,
+linking in the HAL library.
+
+
+The make targets are:
+
+    $ make              # Build library, then project.
+    $ make all          # Build library, then project.
+    $ make lib          # Build library only.
+    $ make prog         # Build project only.
+    $ make flash        # Program binary build file into target board.
+    $ make clean        # Remove project build files.
+    $ make cleanlib     # Remove library build files.
+    $ make cleanall     # Remove library and project build files.
+
+The target:
+
+    $ make flash
+
+will build the library, build the project, then flash the binary
+into the target board all in one step. Make sure it is plugged in.
