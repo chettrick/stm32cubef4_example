@@ -47,6 +47,7 @@ all: lib prog
 lib:
 	${MAKE} -C Drivers/STM32F4xx_HAL_Driver
 
+# Build the project.
 prog: 	${PROG}.elf
 
 ${PROG}.elf: ${SRCS}
