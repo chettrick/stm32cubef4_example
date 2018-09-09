@@ -20,8 +20,8 @@ The dependencies for the project are:
 - arm-none-eabi GCC toolchain.  Linaro version is available in
   OpenBSD ports under devel/arm-none-eabi.  Clang has not yet been tested.
 
-- stlink firmware flashing tool from github.com/texane/stlink .
-  There is an experimental OpenBSD port at github.com/chettrick/mystuff .
+- stlink firmware flashing tool from https://github.com/texane/stlink .
+  There is an experimental OpenBSD port at https://github.com/chettrick/mystuff .
   It is under devel/stlink.  If you have the Ports Collection already, do:
     $ cd /usr/ports
     $ sudo git clone https://github.com/chettrick/mystuff.git
