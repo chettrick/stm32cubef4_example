@@ -26,6 +26,7 @@ CFLAGS+=	-mcpu=cortex-m4
 CFLAGS+=	-mlittle-endian -mthumb -mthumb-interwork
 CFLAGS+=	-mfloat-abi=soft -mfpu=fpv4-sp-d16
 CFLAGS+=	-ffreestanding
+CFLAGS+=	--specs=nosys.specs
 
 # Preprocessor flags.
 CPPFLAGS+=	-DSTM32F407xx
